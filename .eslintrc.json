@@ -1,0 +1,42 @@
+{
+  // Note: the two prettier extends needs to be last because they turn certain things OFF
+  // extends = sets of rules
+  "extends": [
+    "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  // rules = specific rules to toggle
+  // 0: off
+  // 1: warn
+  // 2: error
+  "rules": {
+    "react/prop-types": 0,
+    "no-console": 1,
+    "react-hooks/rules-of-hooks": 2,
+    "react-hooks/exhaustive-deps": 1
+  },
+  // plugins = new additional abilities
+  "plugins": ["react", "import", "jsx-a11y", "react-hooks"],
+  "parser": "babel-eslint", //using experimental feature with class property proposals, so eslint now needs to use babel to understand our code
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
