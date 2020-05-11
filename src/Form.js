@@ -1,7 +1,11 @@
 import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 const Form = () => {
   const [eventName, setEventName] = useState("");
+  const [eventDate, setEventDate] = useState(new Date());
   return (
     <div>
       <form>
@@ -14,11 +18,15 @@ const Form = () => {
             onChange={e => setEventName(e.target.value)}
           />
         </label>
-        <label>
+        <label htmlFor="eventDate">
           Date:
-          <input />
+          <DatePicker
+            id="eventDate"
+            selected={eventDate}
+            onChange={date => setEventDate(date)}
+          />
         </label>
-        <label>
+        <label htmlFor="eventTime">
           Time (optional):
           <input />
         </label>
