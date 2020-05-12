@@ -1,11 +1,25 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+import TimePicker from "rc-time-picker";
+
+import moment from "moment";
+// TODO what is this moment? can I do without it?
 
 import "react-datepicker/dist/react-datepicker.css";
+import "rc-time-picker/assets/index.css";
 
 const Form = () => {
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
+  const [eventTime, setEventTime] = useState(new Date());
+
+  // Settings for TimePicker
+  const format = "h:mm a";
+  const now = moment()
+    .hour(0)
+    .minute(0);
+  // TODO calculate now myself
+
   return (
     <div>
       <form>
@@ -28,7 +42,15 @@ const Form = () => {
         </label>
         <label htmlFor="eventTime">
           Time (optional):
-          <input />
+          <TimePicker
+            showSecond={false}
+            defaultValue={now}
+            className="xxx" //from imported TimePicker style sheet
+            onChange={time => setEventTime(time)}
+            format={format}
+            use12Hours
+            inputReadOnly
+          />
         </label>
         <button>Start</button>
       </form>
