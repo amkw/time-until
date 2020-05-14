@@ -20,9 +20,23 @@ const Form = () => {
     .minute(0);
   // TODO calculate now myself
 
+  function startCountdown() {
+    console.log("in here");
+    console.table({
+      eventName,
+      eventDate: String(eventDate),
+      eventTime: String(eventTime)
+    });
+  }
+
   return (
     <div>
-      <form>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          startCountdown();
+        }}
+      >
         <label htmlFor="eventName">
           Event Name:
           <input
