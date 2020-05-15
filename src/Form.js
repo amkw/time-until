@@ -21,7 +21,6 @@ const Form = () => {
   // TODO calculate now myself
 
   function startCountdown() {
-    console.log("in here");
     console.table({
       eventName,
       eventDate: String(eventDate),
