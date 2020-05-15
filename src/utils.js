@@ -15,15 +15,28 @@ function parseMilliseconds(msecs) {
     hours = 0,
     minutes = 0,
     seconds = 0;
-  const millisecsInSecs = 1000;
-  // const secsInMin = 60;
-  // const minsInHour = 60;
-  // const hoursInDay = 24;
+  const millisecsInSec = 1000;
+  const millisecsInMin = millisecsInSec * 60;
+  const millisecsInHour = millisecsInMin * 60;
+  const millisecsInDay = millisecsInHour * 24;
 
-  while (msecs > millisecsInSecs) {
-    Math.floor(msecs / 1000);
-    seconds++;
-    console.log("in while loop");
+  while (msecs >= millisecsInSec) {
+    while (msecs >= millisecsInMin) {
+      while (msecs >= millisecsInHour) {
+        while (msecs >= millisecsInDay) {
+          days++;
+          msecs -= millisecsInDay;
+        }
+        hours++;
+        msecs -= millisecsInHour;
+      }
+      minutes++;
+      msecs -= millisecsInMin;
+    }
+    if (msecs >= millisecsInSec) {
+      seconds++;
+    }
+    msecs -= 1000;
   }
   return {
     days,
@@ -36,7 +49,8 @@ function parseMilliseconds(msecs) {
 // let fakeEventDate = new Date("November 15, 2020 23:00:00");
 // getTimeDiff(fakeEventDate);
 
-console.log(parseMilliseconds(1001));
-
-// TODO investigate cases: daylight savings, leap years, etc.
-// TODO Make work over time zones
+// console.log(parseMilliseconds(1001)); // 1 sec
+// console.log(parseMilliseconds(120000)); // 2 min
+// console.log(parseMilliseconds(3.48e6)); // 58 min
+// console.log(parseMilliseconds(1.26e7)); // 3 hr, 30 min
+// console.log(parseMilliseconds(2.998e10)); //346 days, 23 hours, 46 minutes, 40 secs
