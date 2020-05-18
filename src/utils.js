@@ -1,14 +1,21 @@
-// function getTimeDiff(futureDate, futureTime) {
-//   let start = new Date();
-//   console.table({
-//     start: String(start),
-//     event: String(futureDate),
-//     days: "4",
-//     hours: "3",
-//     minutes: "2",
-//     seconds: "1"
-//   });
-// }
+function setEventTime(futureDate, futureTime) {
+  // if no time arg, set time to midnight
+  futureTime
+    ? futureDate.setHours(
+        futureTime.getHours(),
+        futureTime.getMinutes(),
+        futureTime.getSeconds(),
+        futureTime.getMilliseconds()
+      )
+    : futureDate.setHours(0, 0, 0, 0);
+  return futureDate;
+}
+
+function getTimeDiff(futureDate) {
+  let now = new Date();
+  let elapsed = futureDate - now;
+  return parseMilliseconds(elapsed);
+}
 
 function parseMilliseconds(msecs) {
   let days = 0,
@@ -24,19 +31,25 @@ function parseMilliseconds(msecs) {
     while (msecs >= millisecsInMin) {
       while (msecs >= millisecsInHour) {
         while (msecs >= millisecsInDay) {
-          days++;
-          msecs -= millisecsInDay;
+          if (msecs >= millisecsInDay) {
+            days++;
+            msecs -= millisecsInDay;
+          }
         }
-        hours++;
-        msecs -= millisecsInHour;
+        if (msecs >= millisecsInHour) {
+          hours++;
+          msecs -= millisecsInHour;
+        }
       }
-      minutes++;
-      msecs -= millisecsInMin;
+      if (msecs >= millisecsInMin) {
+        minutes++;
+        msecs -= millisecsInMin;
+      }
     }
     if (msecs >= millisecsInSec) {
       seconds++;
+      msecs -= 1000;
     }
-    msecs -= 1000;
   }
   return {
     days,
@@ -46,8 +59,15 @@ function parseMilliseconds(msecs) {
   };
 }
 
-// let fakeEventDate = new Date("November 15, 2020 23:00:00");
-// getTimeDiff(fakeEventDate);
+// =========== FOR TESTING =======================
+
+// let fakeEventDate = new Date(
+//   "May 19, 2020 15:00:00 GMT-0700 (Pacific Daylight Time)"
+// );
+// // console.log(getTimeDiff(fakeEventDate));
+// let fakeEventTime = new Date("May 18, 2020 23:45:00 GMT-0700");
+// console.log("updatedTime: ", setEventTime(fakeEventDate)); // set to midnight
+// console.log("updatedTime: ", setEventTime(fakeEventDate, fakeEventTime)); // set to given time
 
 // console.log(parseMilliseconds(1001)); // 1 sec
 // console.log(parseMilliseconds(120000)); // 2 min
