@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import TimePicker from "rc-time-picker";
+import Timer from "./Timer";
 
 import moment from "moment";
 // TODO what is this moment? can I do without it?
@@ -12,6 +13,7 @@ const Form = () => {
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
   const [eventTime, setEventTime] = useState(new Date());
+  const [timers, updateTimers] = useState(["test"]);
 
   // Settings for TimePicker
   const format = "h:mm a";
@@ -20,12 +22,18 @@ const Form = () => {
     .minute(0);
   // TODO calculate now myself
 
+  // TODO: update with real data
+  // const timers = ["test"];
+
   function startCountdown() {
-    console.table({
-      eventName,
-      eventDate: String(eventDate),
-      eventTime: String(eventTime)
-    });
+    // console.table({
+    //   eventName,
+    //   eventDate: String(eventDate),
+    //   eventTime: String(eventTime)
+    // });
+    // console.log(timers);
+    updateTimers(timers.concat("new timer"));
+    // console.log(timers);
   }
 
   return (
@@ -67,7 +75,13 @@ const Form = () => {
         </label>
         <button>Start</button>
       </form>
+      {/* {`timers: ${timers}`} */}
+      {timers.map((data, index) => (
+        <Timer key={index} data={data} />
+      ))}
     </div>
   );
 };
 export default Form;
+
+// move render of Timer to App, not Form
