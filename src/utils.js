@@ -1,3 +1,10 @@
+function getTimeDiff(futureDate, futureTime) {
+  const futureDateWithTime = setEventTime(futureDate);
+  let now = new Date();
+  let elapsed = futureDateWithTime - now;
+  return parseMilliseconds(elapsed);
+}
+
 function setEventTime(futureDate, futureTime) {
   // if no time arg, set time to midnight
   futureTime
@@ -9,12 +16,6 @@ function setEventTime(futureDate, futureTime) {
       )
     : futureDate.setHours(0, 0, 0, 0);
   return futureDate;
-}
-
-function getTimeDiff(futureDate) {
-  let now = new Date();
-  let elapsed = futureDate - now;
-  return parseMilliseconds(elapsed);
 }
 
 function parseMilliseconds(msecs) {
@@ -58,6 +59,8 @@ function parseMilliseconds(msecs) {
     seconds
   };
 }
+
+export default { getTimeDiff };
 
 // =========== FOR TESTING =======================
 
