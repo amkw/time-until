@@ -13,7 +13,7 @@ const Form = () => {
   const [eventName, setEventName] = useState("");
   const [eventDate, setEventDate] = useState(new Date());
   const [eventTime, setEventTime] = useState(new Date());
-  const [timers, updateTimers] = useState(["test"]);
+  const [timers, updateTimers] = useState([]);
 
   // Settings for TimePicker
   const format = "h:mm a";
@@ -22,18 +22,8 @@ const Form = () => {
     .minute(0);
   // TODO calculate now myself
 
-  // TODO: update with real data
-  // const timers = ["test"];
-
   function startCountdown() {
-    // console.table({
-    //   eventName,
-    //   eventDate: String(eventDate),
-    //   eventTime: String(eventTime)
-    // });
-    // console.log(timers);
-    updateTimers(timers.concat("new timer"));
-    // console.log(timers);
+    updateTimers(timers.concat([[eventName, eventDate, eventTime]]));
   }
 
   return (
@@ -75,7 +65,6 @@ const Form = () => {
         </label>
         <button>Start</button>
       </form>
-      {/* {`timers: ${timers}`} */}
       {timers.map((data, index) => (
         <Timer key={index} data={data} />
       ))}
@@ -84,4 +73,4 @@ const Form = () => {
 };
 export default Form;
 
-// move render of Timer to App, not Form
+// TODO move render of Timer to App, not Form

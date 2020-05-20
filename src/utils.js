@@ -1,5 +1,5 @@
 function getTimeDiff(futureDate, futureTime) {
-  const futureDateWithTime = setEventTime(futureDate);
+  const futureDateWithTime = setEventTime(futureDate, futureTime);
   let now = new Date();
   let elapsed = futureDateWithTime - now;
   return parseMilliseconds(elapsed);
@@ -7,6 +7,7 @@ function getTimeDiff(futureDate, futureTime) {
 
 function setEventTime(futureDate, futureTime) {
   // if no time arg, set time to midnight
+  // TODO this already seems taken care of by the DatePicker
   futureTime
     ? futureDate.setHours(
         futureTime.getHours(),
@@ -60,7 +61,7 @@ function parseMilliseconds(msecs) {
   };
 }
 
-export default { getTimeDiff };
+export default getTimeDiff;
 
 // =========== FOR TESTING =======================
 
