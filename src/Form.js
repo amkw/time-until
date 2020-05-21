@@ -22,8 +22,9 @@ const Form = () => {
     .minute(0);
   // TODO calculate now myself
 
+  // TODO fix, for no time given
   function startCountdown() {
-    updateTimers(timers.concat([[eventName, eventDate, eventTime]]));
+    updateTimers(timers.concat([[eventName, eventDate, eventTime.toDate()]]));
   }
 
   return (
