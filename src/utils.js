@@ -2,7 +2,8 @@ function getTimeDiff(futureDate, futureTime) {
   const futureDateWithTime = setEventTime(futureDate, futureTime);
   let now = new Date();
   let elapsed = futureDateWithTime - now;
-  return parseMilliseconds(elapsed);
+  const { days, hours, minutes, seconds } = parseMilliseconds(elapsed);
+  return `${days} days, ${hours} hours, ${minutes} minutes, ${seconds} seconds`;
 }
 
 function setEventTime(futureDate, futureTime) {
