@@ -16,11 +16,17 @@ const Form = props => {
     .minute(0);
   // TODO calculate now myself
 
-  // TODO fix, for no time given
   function startCountdown() {
+    let eventTimeAsDateInstance;
+    if (props.eventTime instanceof Date) {
+      eventTimeAsDateInstance = props.eventTime;
+    } else {
+      eventTimeAsDateInstance = props.eventTime.toDate();
+    }
+    console.log("eventTimeAsDateInstance", eventTimeAsDateInstance);
     props.updateTimers(
       props.timers.concat([
-        [props.eventName, props.eventDate, props.eventTime.toDate()]
+        [props.eventName, props.eventDate, eventTimeAsDateInstance]
       ])
     );
   }
