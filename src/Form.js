@@ -19,7 +19,7 @@ const Form = props => {
   function startCountdown() {
     let eventTimeAsDateInstance;
     if (props.eventTime instanceof Date) {
-      eventTimeAsDateInstance = props.eventTime;
+      eventTimeAsDateInstance = "";
     } else {
       eventTimeAsDateInstance = props.eventTime.toDate();
     }

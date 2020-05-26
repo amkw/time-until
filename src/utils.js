@@ -8,7 +8,6 @@ function getTimeDiff(futureDate, futureTime) {
 
 function setEventTime(futureDate, futureTime) {
   // if no time arg, set time to midnight
-  // TODO this already seems taken care of by the DatePicker
   futureTime
     ? futureDate.setHours(
         futureTime.getHours(),
