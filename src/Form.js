@@ -25,6 +25,7 @@ const Form = props => {
     }
     if (props.eventName === "") {
       window.alert("No Event Name entered.");
+      // TODO make alert into modal instead
     }
     props.updateTimers(
       props.timers.concat([
