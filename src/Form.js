@@ -23,7 +23,9 @@ const Form = props => {
     } else {
       eventTimeAsDateInstance = props.eventTime.toDate();
     }
-    console.log("eventTimeAsDateInstance", eventTimeAsDateInstance);
+    if (props.eventName === "") {
+      window.alert("No Event Name entered.");
+    }
     props.updateTimers(
       props.timers.concat([
         [props.eventName, props.eventDate, eventTimeAsDateInstance]
